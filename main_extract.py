@@ -31,11 +31,7 @@ l=0
 cnt=0
 while True:
   line = fid.readline()
-  # i+=1
-  # if(i<20):
-	# break
-  # if l==1000:
-  #   break
+  
   if line:
     data_info = line.split('\t')
 
@@ -70,5 +66,3 @@ while True:
 bbox_file.close()
 fid.close()
 
-#bbox_file.close()
-#fid.close()
