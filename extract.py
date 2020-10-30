@@ -6,14 +6,14 @@ import shutil
 #import indian_celeb1
 ids=[]
 names=[]
-fid = open("C:\\MS_Celeb_Indian\\clean_list_128Vec_WT051_P010.txt", "r",encoding="ISO-8859-1")
-sourcepath = "C:\\MS_Celeb_Indian\\aligned_face_images_cropnotalign\\"
-destpath = "C:\\MS_Celeb_Indian\\aligned_face_image_crop_no_align_clean\\"
+fid = open("PATH_TO_CLEAN_LIST.TXT_FILE", "r",encoding="ISO-8859-1")#give the path of the clean_list.txt file here
+sourcepath = "PATH_OF_MAIN_EXTRACTED_FILES"#give the path of the file where all the indian celeb extracted images are present
+destpath = "PATH_OF_DESTINATION_FOLDER"#cleaned folder path, if it doesn't exist,it creates
 if not os.path.exists(destpath):
   os.mkdir(destpath)
 bbox_file = open(destpath + '\\bboxes.txt', 'w')
 c=0
-ind=open("E:\\MS-Celeb-1M\\data\\aligned_face_images\\india_celeb1.txt","r")
+ind=open("PATH_TO_INDIAN_CELEB.TXT_FILE","r")
 while True:
   try:
     ind_line=ind.readline()
@@ -45,15 +45,14 @@ while True:
 #     # 6: img_data
 
     if data_info[0] in ids:
-      # x=ids.index(data_info[0])
+     
       l+=1
       # print("\rExtracting Image : " + str(l) ,end="")
       filename =  data_info[1] 
       filename = filename.replace("-F","_F")
       filename = filename.replace("/","\\")
       filename = filename.replace("\n","")	  
-      # bbox = struct.unpack('ffff', data_info[5].decode("base64"))
-      # bbox_file.write(filename + " "+ (" ".join(str(bbox_value) for bbox_value  in bbox)) + "\n")
+     
 
       x=sourcepath+filename	  
       print(os.path.exists(x),x)
@@ -71,6 +70,3 @@ while True:
 
 bbox_file.close()
 fid.close()
-
-#bbox_file.close()
-#fid.close()
