@@ -5,13 +5,13 @@ import codecs
 #import indian_celeb1
 ids=[]
 names=[]
-fid = open("E:\\MS-Celeb-1M\\data\\croped_face_images\\FaceImageCroppedWithOutAlignment.tsv", "r",encoding="ISO-8859-1")
-base_path = "C:\\MS_Celeb_Indian\\aligned_face_images_cropnotalign\\"
+fid = open("PATH_TO_THE_TSV_FILE", "r",encoding="ISO-8859-1")#Path of the tsv file of MS-Celeb dataset
+base_path = "Your_folder_path"#create a folder to store the extracted images
 if not os.path.exists(base_path):
   os.mkdir(base_path)
 bbox_file = open(base_path + '\\bboxes.txt', 'w')
 c=0
-ind=open("E:\\MS-Celeb-1M\\data\\aligned_face_images\\india_celeb1.txt","r")
+ind=open("PATH_TO_INDIAN_LIST_TEXT_FILE","r")#give the path of the file containing indian list of MS-Celeb
 while True:
   try:
     ind_line=ind.readline()
@@ -50,8 +50,7 @@ while True:
       l+=1
       print("\rExtracting Image : " + str(l) ,end="")
       filename =  data_info[0] + "\\" + data_info[1] + "_" + data_info[4] + ".jpg"
-      # bbox = struct.unpack('ffff', data_info[5].decode("base64"))
-      # bbox_file.write(filename + " "+ (" ".join(str(bbox_value) for bbox_value  in bbox)) + "\n")
+      
 
       img_data = base64.b64decode(data_info[6])
       output_file_path = base_path + "\\" + filename 
