@@ -6,15 +6,15 @@ import shutil
 #import indian_celeb1
 ids=[]
 names=[]
-fid = open("C:\\MS_Celeb_Indian\\relabel_list_128Vec_T058.txt", "r",encoding="ISO-8859-1")
-sourcepath = "C:\MS_Celeb_Indian\\aligned_face_images1\\"
-destpath = "C:\\MS_Celeb_Indian\\aligned_face_images2\\"
-cleanpath=open("C:\\MS_Celeb_Indian\\clean_list_128Vec_WT051_P010.txt","r")
+fid = open("PATH_OF_RELABEL_LIST.TXT_FILE", "r",encoding="ISO-8859-1")
+sourcepath = "PATH_OF_CLEANED_IMAGES_FOLDER"
+destpath = "YOUR_DESTINATION_PATH"
+cleanpath=open("PATH_OF_CLEAN_LIST.TXT_FILE","r")
 if not os.path.exists(destpath):
   os.mkdir(destpath)
 bbox_file = open(destpath + '\\bboxes.txt', 'w')
 c=0
-ind=open("E:\\MS-Celeb-1M\\data\\aligned_face_images\\india_celeb1.txt","r")
+ind=open("PATH_TO_INDIAN_CELEB.TXT_FILE","r")
 while True:
   try:
     ind_line=ind.readline()
@@ -34,13 +34,10 @@ l=0
 while True:
   line = fid.readline()
   clean_line=cleanpath.readline()
-  # i+=1
-  # if(i<20):
-	# break
+ 
   if line:
     data_info = line.split(' ')
-    # clean_info=clean_line.split(' ')
-    # print(clean_info)
+    
 # 
 #     # 0: Freebase MID (unique key for each entity)
 #     # 1: ImageSearchRank
@@ -49,8 +46,7 @@ while True:
 #     # 6: img_data
 
     if data_info[0] in ids:
-      # print(data_info[1]==clean_info[1])
-#       # x=ids.index(data_info[0])
+     
       l+=1
       # print("\rExtracting Image : " + str(l) ,end="")
       filename =  data_info[1] 
@@ -58,9 +54,7 @@ while True:
       filename = filename.replace("/","\\")
       filename = filename.replace("\n","")
       
-      # print(filename)
-#       # bbox = struct.unpack('ffff', data_info[5].decode("base64"))
-#       # bbox_file.write(filename + " "+ (" ".join(str(bbox_value) for bbox_value  in bbox)) + "\n")
+     
 
       x=sourcepath+filename	  
       # print(os.path.exists(x),x)
@@ -70,9 +64,7 @@ while True:
         if not os.path.exists(destpath+data_info[0]):
           os.mkdir(destpath+data_info[0])
 
-        # fname=filename.split("\\")
-        # fname[1]="r_"+fname[1]
-        # filename="\\".join(map(str,fname))
+       
         
         shutil.copy(sourcepath + filename,destpath +data_info[0] +"\\" + "relabeled_" + filename.split("\\")[1])
         print("\rcopying file : " + filename,end="")
@@ -83,6 +75,3 @@ while True:
 
 bbox_file.close()
 fid.close()
-
-#bbox_file.close()
-#fid.close()
